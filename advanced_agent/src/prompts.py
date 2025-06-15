@@ -1,3 +1,8 @@
+# flake8: noqa
+"""
+Prompts for advanced agent to analyze developer tools and technologies
+"""
+
 
 class DeveloperToolsPrompts:
     """Collection of prompts for analyzing developer tools and technologies"""
@@ -28,12 +33,20 @@ class DeveloperToolsPrompts:
                 Nhost"""
 
     # Company/Tool analysis prompts
-    TOOL_ANALYSIS_SYSTEM = """You are analyzing developer tools and programming technologies. 
-                            Focus on extracting information relevant to programmers and software developers. 
+    TOOL_ANALYSIS_SYSTEM = """You are analyzing developer tools and programming technologies.
+                            Focus on extracting information relevant to programmers and software developers.
                             Pay special attention to programming languages, frameworks, APIs, SDKs, and development workflows."""
 
     @staticmethod
     def tool_analysis_user(company_name: str, content: str) -> str:
+        """
+        Generate a detailed analysis of a developer tool or technology based on its content.
+        Args:
+            company_name (str): Name of the company or tool being analyzed.
+            content (str): Content extracted from the company's website or documentation.
+        Returns:
+            str: Formatted prompt for the LLM to analyze the tool.
+        """
         return f"""Company/Tool: {company_name}
                 Website Content: {content[:2500]}
 
@@ -49,11 +62,20 @@ class DeveloperToolsPrompts:
                 Focus on developer-relevant features like APIs, SDKs, language support, integrations, and development workflows."""
 
     # Recommendation prompts
-    RECOMMENDATIONS_SYSTEM = """You are a senior software engineer providing quick, concise tech recommendations. 
+    RECOMMENDATIONS_SYSTEM = """You are a senior software engineer providing quick, concise tech recommendations.
                             Keep responses brief and actionable - maximum 3-4 sentences total."""
 
     @staticmethod
     def recommendations_user(query: str, company_data: str) -> str:
+        """
+        Generate a concise recommendation based on the analysis of developer tools.
+        Args:
+            query (str): The original developer tools query.
+            company_data (str): Summary of the analyzed companies and tools.
+        Returns:
+            str: Formatted prompt for the LLM to provide recommendations.
+        """
+
         return f"""Developer Query: {query}
                 Tools/Technologies Analyzed: {company_data}
 
