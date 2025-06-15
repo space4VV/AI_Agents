@@ -10,20 +10,28 @@ A collection of AI agent experiments and projects.
 AI_Agents/
 ├── LICENSE
 ├── README.md
-├── multi_agent/
+├── .flake8
+├── .pre-commit-config.yaml
+├── advanced_agent/
+│   ├── .env
+│   ├── .python-version
+│   ├── advanced_agent.py
+│   ├── pyproject.toml
+│   ├── uv.lock
+│   └── src/
+│       ├── __init__.py
+│       ├── firecrawl.py
+│       ├── models.py
+│       ├── prompts.py
+│       └── workflow.py
+├── simple_agent/
+│   ├── .env
 │   ├── .gitignore
 │   ├── .python-version
-│   ├── README.md
 │   ├── main.py
 │   ├── pyproject.toml
 │   └── uv.lock
-└── simple_agent/
-    ├── .gitignore
-    ├── .python-version
-    ├── README.md
-    ├── main.py
-    ├── pyproject.toml
-    └── uv.lock
+└── testing.ipynb
 ```
 
 ---
@@ -37,33 +45,32 @@ This project uses [`uv`](https://github.com/astral-sh/uv) for Python dependency 
 ```sh
 pip install uv
 ```
-Or see [uv installation instructions](https://github.com/astral-sh/uv).
 
 ### 2. Install dependencies
 
 For each agent, install dependencies from its directory:
 
 ```sh
-cd simple_agent
+cd advanced_agent
 uv pip install -r uv.lock
 
-cd ../multi_agent
+cd ../simple_agent
 uv pip install -r uv.lock
 ```
 
 ### 3. Run an agent
 
-For example, to run the simple agent:
+For example, to run the advanced agent:
+
+```sh
+cd advanced_agent
+python advanced_agent.py
+```
+
+Or to run the simple agent:
 
 ```sh
 cd simple_agent
-python main.py
-```
-
-Or to run the multi agent:
-
-```sh
-cd multi_agent
 python main.py
 ```
 
@@ -74,12 +81,8 @@ python main.py
 - **Secrets:** Do **not** commit secrets or API keys. Use a local `.env` file for environment variables (already gitignored).
 - **Python Version:** Each agent uses the Python version specified in its `.python-version` file.
 - **Dependencies:** Managed with `uv` and locked in `uv.lock` for each agent.
-
----
-
-## More Information
-
-See the `README.md` files inside `simple_agent/` and `multi_agent/` for agent-specific documentation.
+- **Linting:** Uses `flake8` with a line length of 120 (see `.flake8`).
+- **Pre-commit:** Uses pre-commit hooks as configured in `.pre-commit-config.yaml`.
 
 ---
 
